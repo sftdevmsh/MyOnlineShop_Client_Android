@@ -1,4 +1,4 @@
-package msh.myonlineshop.handlers.base.clientHandler;
+package msh.myonlineshop.configs.clientHandler;
 
 import java.security.cert.CertificateException;
 

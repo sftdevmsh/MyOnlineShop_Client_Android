@@ -1,4 +1,4 @@
-package msh.myonlineshop.handlers.base.clientHandler;
+package msh.myonlineshop.configs.clientHandler;
 
 public class ConfigApiAddress {
     public static String baseDomain = "https://onlineshop.holosen.net:8080";

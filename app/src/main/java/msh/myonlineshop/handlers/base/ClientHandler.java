@@ -1,5 +1,6 @@
-package msh.myonlineshop.handlers.base.clientHandler;
+package msh.myonlineshop.handlers.base;
 
+import msh.myonlineshop.configs.clientHandler.ConfigApiAddress;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
