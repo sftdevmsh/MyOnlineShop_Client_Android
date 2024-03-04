@@ -61,21 +61,24 @@ public class SplashActivity extends AppCompatActivity {
                             User userInfo = response.body().getDataList().get(0);
                             user.setCustomerId(userInfo.getCustomerId());
                             currentUserHandler.setCurrentUser(user);
+                            openMainActivity();
                         }
-                        else //if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
+                        else if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
                         {
                             nullifyUser(currentUserHandler, userDbHandler);
+                            openMainActivity();
                         }
-                        openMainActivity();
+                        else
+                            openErrorActivity("incorrect server response, please try again ...");
                     }
                     else
                     {
-                        openErrorActivity("server response failed, please try again ...");
+                        openErrorActivity("incorrect server response, please try again ...");
                     }
                 }
                 @Override
                 public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
-                    openErrorActivity("server response failed, please try again ...");
+                    openErrorActivity("server failed to response, please try again ...");
                 }
             },token);
         }
