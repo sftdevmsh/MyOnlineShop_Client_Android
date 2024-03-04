@@ -66,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
                         else if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
                         {
                             nullifyUser(currentUserHandler, userDbHandler);
-                            openMainActivity();
+                            openLoginActivity();
                         }
                         else
                             openErrorActivity("incorrect server response, please try again ...");
@@ -97,6 +97,11 @@ public class SplashActivity extends AppCompatActivity {
     void openMainActivity()
     {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void openLoginActivity() {
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
