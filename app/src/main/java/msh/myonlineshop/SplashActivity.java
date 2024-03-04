@@ -109,7 +109,7 @@ public class SplashActivity extends AppCompatActivity {
 
     void openErrorActivity(String msg)
     {
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this, ErrorActivity.class);
         intent.putExtra("msg", msg);
         startActivity(intent);
     }

@@ -37,7 +37,7 @@ public class UserDbHandler extends LocalDBHandler<User> {
     public User getLatestUser() {
         String sqlStr = "select * from " + getTableName() + " order by " + User.key_id + " desc";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("", null);
+        Cursor cursor = db.rawQuery(sqlStr, null);
 
         if (cursor != null)
             cursor.moveToNext();

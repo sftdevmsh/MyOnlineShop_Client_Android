@@ -1,6 +1,7 @@
 package msh.myonlineshop.handlers.base;
 
-import msh.myonlineshop.configs.clientHandler.ConfigApiAddress;
+import msh.myonlineshop.configs.clientHandler.ApiAddresses;
+import msh.myonlineshop.configs.clientHandler.UnsafeSSLConfig;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,7 +13,7 @@ public class ClientHandler {
 
     public ClientHandler() {
         builder = new Retrofit.Builder()
-                .baseUrl(ConfigApiAddress.baseDomain + "/api/")
+                .baseUrl(ApiAddresses.baseDomain + "/api/")
 //                .client(UnsafeSSLConfig.getUnsafeOkHttpClient().build())
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
