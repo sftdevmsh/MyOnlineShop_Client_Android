@@ -84,12 +84,14 @@ public class SplashActivity extends AppCompatActivity {
         }
         else
         {
-            openErrorActivity("Null User Error");
+            nullifyUser(null, userDbHandler);
+            openMainActivity();
         }
     }
 
     private void nullifyUser(CurrentUserHandler currentUserHandler, UserDbHandler userDbHandler) {
-        currentUserHandler.setCurrentUser(null);
+        if(currentUserHandler != null)
+            currentUserHandler.setCurrentUser(null);
         userDbHandler.deleteAllUsers();
     }
 
