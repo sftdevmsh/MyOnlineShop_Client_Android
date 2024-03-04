@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import msh.myonlineshop.handlers.base.LocalDBHandler;
 import msh.myonlineshop.models.User;
 
-public class UserHandler extends LocalDBHandler<User> {
+public class UserDbHandler extends LocalDBHandler<User> {
 
-    public UserHandler(Context context) {
+    public UserDbHandler(Context context) {
         super(context);
     }
 

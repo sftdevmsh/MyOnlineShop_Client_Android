@@ -5,9 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import msh.myonlineshop.handlers.UserHandler;
+import msh.myonlineshop.handlers.UserDbHandler;
+import msh.myonlineshop.models.CurrentUserHandler;
 import msh.myonlineshop.models.User;
+import msh.myonlineshop.models.base.ServiceResponse;
+import msh.myonlineshop.services.UserService;
 import msh.myonlineshop.utlities.InternetConnection;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -24,30 +30,77 @@ public class SplashActivity extends AppCompatActivity {
         Boolean isNetworkAvailable = InternetConnection.isNetworkAvailable(getApplication());
         if(isNetworkAvailable)
         {
-            checkLocalUserAndGetServerUserInfo();
+            getClientUserInfo();
         }
         else
         {
-            Intent intent = new Intent(SplashActivity.this, ConnectionError.class);
-            startActivity(intent);
+            openErrorActivity("Please check the Internet connection ...");
         }
     }
 
-    private void checkLocalUserAndGetServerUserInfo() {
-        UserHandler userHandler = new UserHandler(this);
+    private void getClientUserInfo()
+    {
+        UserDbHandler userDbHandler = new UserDbHandler(this);
         //build table, if does not exist
-        userHandler.checkAndCreateTable();
-        User user = userHandler.getLatestUser();
+        userDbHandler.checkAndCreateTable();
+        User user = userDbHandler.getLatestUser();
         if(user!=null)
         {
-            //get the information from server as client
-            userHandler
+            String token = user.getToken();
+            //get the information from server as client, and set CurrentUser
+            UserService.getUserInfoFromServer(new Callback<ServiceResponse<User>>()
+            {
+                @Override
+                public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response)
+                {
+                    if (response.isSuccessful() && response.body() != null)
+                    {
+                        CurrentUserHandler currentUserHandler = new CurrentUserHandler();
+                        if (!response.body().isHasError())
+                        {
+                            User userInfo = response.body().getDataList().get(0);
+                            user.setCustomerId(userInfo.getCustomerId());
+                            currentUserHandler.setCurrentUser(user);
+                        }
+                        else //if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
+                        {
+                            nullifyUser(currentUserHandler, userDbHandler);
+                        }
+                        openMainActivity();
+                    }
+                    else
+                    {
+                        openErrorActivity("server response failed, please try again ...");
+                    }
+                }
+                @Override
+                public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
+                    openErrorActivity("server response failed, please try again ...");
+                }
+            },token);
         }
         else
         {
-            Intent intent = new Intent(SplashActivity.this, ConnectionError.class);
-            startActivity(intent);
+            openErrorActivity("Null User Error");
         }
     }
 
+    private void nullifyUser(CurrentUserHandler currentUserHandler, UserDbHandler userDbHandler) {
+        currentUserHandler.setCurrentUser(null);
+        userDbHandler.deleteAllUsers();
+    }
+
+
+    void openMainActivity()
+    {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    void openErrorActivity(String msg)
+    {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        intent.putExtra("msg", msg);
+        startActivity(intent);
+    }
 }

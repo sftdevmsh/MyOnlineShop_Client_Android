@@ -10,7 +10,7 @@ import retrofit2.Callback;
 
 public class UserService {
 
-    void getUserInfoFromServer(Callback<ServiceResponse<User>> callbackUser , String token)
+    public static void getUserInfoFromServer(Callback<ServiceResponse<User>> callbackUser , String token)
     {
         ClientHandler clientHandler = new ClientHandler();
         UserClient userClient = clientHandler.getRetrofit().create(UserClient.class);
