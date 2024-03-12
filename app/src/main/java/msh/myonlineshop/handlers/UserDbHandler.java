@@ -40,13 +40,15 @@ public class UserDbHandler extends LocalDBHandler<User> {
         Cursor cursor = db.rawQuery(sqlStr, null);
 
         if (cursor != null)
-            cursor.moveToNext();
+            cursor.moveToFirst();
 
         User user;
         if (cursor.getCount() == 0)
             user = null;
         else
             user = new User(cursor);
+
+        db.close();
         return user;
     }
 

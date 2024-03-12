@@ -1,5 +1,6 @@
 package msh.myonlineshop.models;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 
 import java.io.Serializable;
@@ -142,5 +143,15 @@ public class User implements Serializable {
     }
 
 
+    public ContentValues getContentValues() {
+        ContentValues values = new ContentValues();
+        values.put(User.key_id, getId());
+        values.put(User.key_customerId, getCustomerId());
+        values.put(User.key_firstname, getFirstName());
+        values.put(User.key_lastname, getLastName());
+        values.put(User.key_username, getUsername());
+        values.put(User.key_token, getToken());
+        return values;
+    }
 
 }

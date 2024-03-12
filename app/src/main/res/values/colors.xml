@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#00000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary">#555</color>
+    <color name="primaryDark">#444</color>
+    <color name="red">#EB4435</color>
+    <color name="green">#33A852</color>
+    <color name="pink">#f78fb3</color>
+    <color name="blue">#546de5</color>
+    <color name="purple">#574b90</color>
+    <color name="aqua">#3dc1d3</color>
+    <color name="accent">#e66767</color>
+    <color name="EEE">#EEEEEE</color>
+    <color name="DDD">#DDD</color>
+    <color name="E6">#E6E6E6</color>
+    <color name="F5">#F5F5F5</color>
+    <color name="light">#B7FFFFFF</color>
+
 </resources>

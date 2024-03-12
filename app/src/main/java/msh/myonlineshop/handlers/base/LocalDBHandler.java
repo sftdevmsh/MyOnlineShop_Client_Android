@@ -18,12 +18,14 @@ public abstract class LocalDBHandler<T> extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(getCreateQuery());
+//        db.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(getDropQuery());
         onCreate(db);
+        db.close();
     }
 
     public void addData(ContentValues values)
@@ -37,7 +39,7 @@ public abstract class LocalDBHandler<T> extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         onCreate(db);
-//        db.close();
+        db.close();
     }
 
 

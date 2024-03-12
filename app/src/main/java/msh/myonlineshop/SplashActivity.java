@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import msh.myonlineshop.handlers.UserDbHandler;
-import msh.myonlineshop.models.CurrentUserHandler;
+import msh.myonlineshop.handlers.CurrentUserHandler;
 import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
 import msh.myonlineshop.services.UserService;
@@ -23,7 +23,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -34,7 +33,8 @@ public class SplashActivity extends AppCompatActivity {
         }
         else
         {
-            openErrorActivity("Please check the Internet connection ...");
+//            openErrorActivity("Please check the Internet connection ...");
+            openMainActivity();
         }
     }
 
@@ -43,67 +43,63 @@ public class SplashActivity extends AppCompatActivity {
         UserDbHandler userDbHandler = new UserDbHandler(this);
         //build table, if does not exist
         userDbHandler.checkAndCreateTable();
+
+//        userDbHandler.deleteAllUsers();
+//        CurrentUserHandler.setCurrentUser(null);
+        CurrentUserHandler.nullifyUser(this);
+
         User user = userDbHandler.getLatestUser();
         if(user!=null)
         {
             String token = user.getToken();
-            //get the information from server as client, and set CurrentUser
-            UserService.getUserInfoFromServer(new Callback<ServiceResponse<User>>()
-            {
-                @Override
-                public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response)
-                {
-                    if (response.isSuccessful() && response.body() != null)
-                    {
-                        CurrentUserHandler currentUserHandler = new CurrentUserHandler();
-                        if (!response.body().isHasError())
-                        {
-                            User userInfo = response.body().getDataList().get(0);
-                            user.setCustomerId(userInfo.getCustomerId());
-                            currentUserHandler.setCurrentUser(user);
+            if(token != null && !token.isEmpty()) {
+                //get the information from server as client, and set CurrentUser
+                UserService.getUserInfoFromServer(new Callback<ServiceResponse<User>>() {
+                    @Override
+                    public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            if (!response.body().isHasError()) {
+                                User userInfo = response.body().getDataList().get(0);
+                                user.setCustomerId(userInfo.getCustomerId());
+                                userDbHandler.addData(user.getContentValues());
+                                CurrentUserHandler.setCurrentUser(user);
+                            }
+                            else if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
+                            {
+                                //
+                            }
+                            else
+                            {
+                                //
+                            }
                             openMainActivity();
                         }
-                        else if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
-                        {
-                            nullifyUser(currentUserHandler, userDbHandler);
-                            openLoginActivity();
-                        }
                         else
+                        {
                             openErrorActivity("incorrect server response, please try again ...");
+                        }
                     }
-                    else
+
+                    @Override
+                    public void onFailure(Call<ServiceResponse<User>> call, Throwable t)
                     {
-                        openErrorActivity("incorrect server response, please try again ...");
+                        openErrorActivity("server failed to response, please try again ...");
                     }
-                }
-                @Override
-                public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
-                    openErrorActivity("server failed to response, please try again ...");
-                }
-            },token);
+                }, token);
+            }
+            else
+                openMainActivity();
         }
         else
         {
-            nullifyUser(null, userDbHandler);
             openMainActivity();
         }
-    }
-
-    private void nullifyUser(CurrentUserHandler currentUserHandler, UserDbHandler userDbHandler) {
-        if(currentUserHandler != null)
-            currentUserHandler.setCurrentUser(null);
-        userDbHandler.deleteAllUsers();
     }
 
 
     void openMainActivity()
     {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void openLoginActivity() {
-        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -114,3 +110,27 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+
+//                                    User user = response.body().getDataList().get(0);
+//                                    UserDbHandler dbHandler = new UserDbHandler(LoginActivity.this);
+//                                    dbHandler.deleteAllUsers();
+//                                    dbHandler.addData(user.getContentValues());
+//                                    CurrentUserHandler currentUserHandler = new CurrentUserHandler();
+//                                    currentUserHandler.setCurrentUser(user);
+//                                    MainActivity mainActivity = (MainActivity) getActivity();
+////                                    mainActivity.syncMenu();
+////
+////                                    FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+////                                    transaction.replace(R.id.mainFrame, new HomeFragment(activity));
+////                                    transaction.commit();
+
+//    private void openLoginActivity() {
+//        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+//        startActivity(intent);
+//    }
+//    private void openLoginFragment() {
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.mainFrame, new LoginFragment(this));
+//    }
+

@@ -13,7 +13,7 @@ public interface UserClient {
     Call<ServiceResponse<User>> login(@Body() User data);
 
     @GET("user/getUserInfo")
-    Call<ServiceResponse<User>> getUserInfo(
+    Call<ServiceResponse<User>> getUserInfoFromServer(
             @Header("Authorization") String token
     );
 }

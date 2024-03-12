@@ -3,4 +3,32 @@
     <string name="password">password</string>
     <string name="username">username</string>
     <string name="login">login</string>
+    <string name="fill_required_fields">Please fill in all of the required fields.</string>
+    <string name="server_failed_to_respond">Server failed to respond</string>
+    <string name="server_response_failed">server response failed</string>
+    <string name="server_response_body_has_error">server response body has error</string>
+    <string name="logged_in_successfully">logged in successfully</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="about">about</string>
+    <string name="full_name">full name</string>
+    <string name="home">home</string>
+    <string name="products">products</string>
+    <string name="blog">blog</string>
+    <string name="basket">basket</string>
+    <string name="profile">profile</string>
+    <string name="invoices">invoices</string>
+    <string name="logout">logout</string>
+    <string name="twice_back">press back button twice to exit.</string>
 </resources>
