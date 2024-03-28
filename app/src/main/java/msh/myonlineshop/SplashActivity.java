@@ -44,9 +44,9 @@ public class SplashActivity extends AppCompatActivity {
         //build table, if does not exist
         userDbHandler.checkAndCreateTable();
 
-//        userDbHandler.deleteAllUsers();
-//        CurrentUserHandler.setCurrentUser(null);
-        CurrentUserHandler.nullifyUser(this);
+        userDbHandler.deleteAllUsers();
+        CurrentUserHandler.setCurrentUser(null);
+//        CurrentUserHandler.nullifyUser(this);
 
         User user = userDbHandler.getLatestUser();
         if(user!=null)

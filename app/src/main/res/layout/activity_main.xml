@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,62 +8,77 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    topAppBar _ middleFragmenLayout _ bottomNav-->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        topAppBar-->
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:outlineAmbientShadowColor="@android:color/transparent"
-            android:outlineProvider="none"
-            android:outlineSpotShadowColor="@android:color/transparent"
-            app:elevation="0dp">
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:elevation="0dp"
-                app:navigationIcon="@drawable/ic_menu_black_24dp"
-                app:title="@string/app_name"
-                app:titleTextColor="@android:color/black"></com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
 
-<!--        fragmentHolder-->
-        <androidx.core.widget.NestedScrollView
+        <!--    topAppBar _ middleFragmenLayout-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="60dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <FrameLayout
-                    android:id="@+id/mainFrame"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"></FrameLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"></View>
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+            android:layout_marginBottom="75dp"
+            android:orientation="vertical">
 
-<!--        bottomNav-->
+            <!-- topAppBar -->
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/topAppBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:outlineAmbientShadowColor="@android:color/transparent"
+                android:outlineProvider="none"
+                android:outlineSpotShadowColor="@android:color/transparent"
+                app:elevation="0dp">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:elevation="0dp"
+                    app:navigationIcon="@drawable/ic_menu_black_24dp"
+                    app:title="@string/app_name"
+                    app:titleTextColor="@android:color/black"></com.google.android.material.appbar.MaterialToolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/midNestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/mainFrameLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></View>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <!-- bottomNav -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_height="75dp"
             android:background="@drawable/bottom_nav_shape"
             app:elevation="10dp"
+            android:layout_gravity="bottom"
             app:menu="@menu/bottom_nav_menu">
+
         </com.google.android.material.bottomnavigation.BottomNavigationView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-<!--    side navigation-->
+
+
+    <!--    side navigation-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/sideNav"
         android:layout_width="wrap_content"
@@ -74,4 +88,7 @@
         app:menu="@menu/drawer_menu">
     </com.google.android.material.navigation.NavigationView>
 
+
 </androidx.drawerlayout.widget.DrawerLayout>
+
+
