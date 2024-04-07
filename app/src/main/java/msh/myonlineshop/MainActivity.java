@@ -101,27 +101,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        fragmentTransaction.replace(R.id.mainFrameLayout, new HomeFragment(MainActivity.this));
-                        break;
-                    case R.id.products:
-                        fragmentTransaction.replace(R.id.mainFrameLayout, new ProductsFragment(MainActivity.this));
-                        break;
-                    case R.id.blog:
-                        fragmentTransaction.replace(R.id.mainFrameLayout, new BlogFragment(MainActivity.this));
-                        break;
-                    case R.id.basket:
-                        fragmentTransaction.replace(R.id.mainFrameLayout, new BasketFragment(MainActivity.this));
-                        break;
-                }
+                int id = item.getItemId();
+                if(id == R.id.home)
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new HomeFragment(MainActivity.this));
+                else if(id == R.id.products)
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new ProductsFragment(MainActivity.this));
+                else if(id == R.id.blog)
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new BlogFragment(MainActivity.this));
+                if(id == R.id.basket)
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new BasketFragment(MainActivity.this));
                 fragmentTransaction.commit();
                 return true;
             }
         });
     }
-
-
 
 
     @Override
