@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mainDrawer;
     private MaterialToolbar topAppBar;
     private BottomNavigationView bottomNav;
-//    private FrameLayout mainFrame;
+////    private FrameLayout mainFrame;
     private NavigationView sideNav;
     private boolean doubleBackToExitPressedOnce = false;
 
