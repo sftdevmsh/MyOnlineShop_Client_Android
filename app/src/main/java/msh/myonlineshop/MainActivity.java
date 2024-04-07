@@ -1,10 +1,5 @@
 package msh.myonlineshop;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,14 +9,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+//import androidx.appcompat.R;
+//import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+
 
 import msh.myonlineshop.fragments.AboutFragment;
-import msh.myonlineshop.fragments.BlankFragment;
+import msh.myonlineshop.fragments.BasketFragment;
+import msh.myonlineshop.fragments.BlogFragment;
+import msh.myonlineshop.fragments.HomeFragment;
 import msh.myonlineshop.fragments.LoginFragment;
+import msh.myonlineshop.fragments.ProductsFragment;
 import msh.myonlineshop.handlers.CurrentUserHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         syncMenu();
         linkTopAppBarWithSideNavigationView();
         sideNavItemSelectedListener();
+        bottomNavItemSelectedListener();
     }
 
     void bindViews()
@@ -75,13 +84,38 @@ public class MainActivity extends AppCompatActivity {
         sideNav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 if(item.getItemId() == R.id.login)
-                    transaction.replace(R.id.mainFrameLayout, new LoginFragment(MainActivity.this));
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new LoginFragment(MainActivity.this));
                 else if(item.getItemId() == R.id.about)
-                    transaction.replace(R.id.mainFrameLayout, new AboutFragment());
-                transaction.commit();
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new AboutFragment());
+                fragmentTransaction.commit();
                 mainDrawer.closeDrawer(Gravity.LEFT);
+                return true;
+            }
+        });
+    }
+
+    private void bottomNavItemSelectedListener() {
+        bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        fragmentTransaction.replace(R.id.mainFrameLayout, new HomeFragment(MainActivity.this));
+                        break;
+                    case R.id.products:
+                        fragmentTransaction.replace(R.id.mainFrameLayout, new ProductsFragment(MainActivity.this));
+                        break;
+                    case R.id.blog:
+                        fragmentTransaction.replace(R.id.mainFrameLayout, new BlogFragment(MainActivity.this));
+                        break;
+                    case R.id.basket:
+                        fragmentTransaction.replace(R.id.mainFrameLayout, new BasketFragment(MainActivity.this));
+                        break;
+                }
+                fragmentTransaction.commit();
                 return true;
             }
         });
