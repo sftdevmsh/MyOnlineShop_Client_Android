@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         sideNav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                System.out.println("side navvvvv");
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
                 if(item.getItemId() == R.id.login)

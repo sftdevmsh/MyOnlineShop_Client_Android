@@ -29,10 +29,6 @@ public class ProductsFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_products, container, false);
         return rootView;
     }
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_products, container, false);
-//    }
 
 
 }
