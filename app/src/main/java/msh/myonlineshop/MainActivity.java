@@ -3,6 +3,7 @@ package msh.myonlineshop;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 //import androidx.appcompat.R;
 //import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mainDrawer;
     private MaterialToolbar topAppBar;
     private BottomNavigationView bottomNav;
-////    private FrameLayout mainFrame;
+    private FrameLayout mainFrameLayout;
     private NavigationView sideNav;
     private boolean doubleBackToExitPressedOnce = false;
 
@@ -56,17 +58,36 @@ public class MainActivity extends AppCompatActivity {
         linkTopAppBarWithSideNavigationView();
         sideNavItemSelectedListener();
         bottomNavItemSelectedListener();
+        bottomNav.setSelectedItemId(R.id.products);
     }
+
 
     void bindViews()
     {
         mainDrawer = findViewById(R.id.mainDrawer);
         topAppBar = findViewById(R.id.topAppBar);
-//        bottomNav = findViewById(R.id.bottomNav);
-//        mainFrame = findViewById(R.id.mainFrame);
+        bottomNav = findViewById(R.id.bottomNav);
+        mainFrameLayout = findViewById(R.id.mainFrameLayout);
         sideNav = findViewById(R.id.sideNav);
     }
 
+
+    public void syncMenu() {
+        View header = sideNav.getHeaderView(0);
+        TextView fullName = header.findViewById(R.id.full_name);
+        TextView username = header.findViewById(R.id.username);
+        if (CurrentUserHandler.IsLoggedIn()) {
+            sideNav.getMenu().clear();
+            sideNav.inflateMenu(R.menu.drawer_loggined_menu);
+            fullName.setText(CurrentUserHandler.getCurrentUser().getFullName());
+            username.setText("(" + CurrentUserHandler.getCurrentUser().getUsername() + ")");
+        } else {
+            sideNav.getMenu().clear();
+            sideNav.inflateMenu(R.menu.drawer_menu);
+            fullName.setText("Full Name ...");
+            username.setText("(username ...)");
+        }
+    }
 
     private void linkTopAppBarWithSideNavigationView() {
         actionBarDrawerToggle = new ActionBarDrawerToggle(
@@ -85,10 +106,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
                 if(item.getItemId() == R.id.login)
                     fragmentTransaction.replace(R.id.mainFrameLayout, new LoginFragment(MainActivity.this));
                 else if(item.getItemId() == R.id.about)
                     fragmentTransaction.replace(R.id.mainFrameLayout, new AboutFragment());
+
                 fragmentTransaction.commit();
                 mainDrawer.closeDrawer(Gravity.LEFT);
                 return true;
@@ -97,61 +120,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bottomNavItemSelectedListener() {
-        bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        System.out.println("bottomNavItemSelectedListenerrrrrrrrrrrrrrrrrrrrrrrr");
+        NavigationBarView.OnItemSelectedListener lsnr = new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 int id = item.getItemId();
-                if(id == R.id.home)
+                System.out.println("id is :::::::::::" + id);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                if(id == R.id.home) {
                     fragmentTransaction.replace(R.id.mainFrameLayout, new HomeFragment(MainActivity.this));
-                else if(id == R.id.products)
+                }
+                else if(id == R.id.products) {
                     fragmentTransaction.replace(R.id.mainFrameLayout, new ProductsFragment(MainActivity.this));
+                }
                 else if(id == R.id.blog)
                     fragmentTransaction.replace(R.id.mainFrameLayout, new BlogFragment(MainActivity.this));
-                if(id == R.id.basket)
+                else if(id == R.id.basket)
                     fragmentTransaction.replace(R.id.mainFrameLayout, new BasketFragment(MainActivity.this));
+
                 fragmentTransaction.commit();
                 return true;
             }
-        });
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Pass the event to ActionBarDrawerToggle, if it returns
-//        // true, then it has handled the app icon touch event
-//        System.out.println("onOptionsItemSelected");
-//        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-//            System.out.println("trueeeeeeeeeeeeee");
-//            return true;
-//        }
-//        // Handle your other action bar items...
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-    public void syncMenu() {
-        View header = sideNav.getHeaderView(0);
-        TextView fullName = header.findViewById(R.id.full_name);
-        TextView username = header.findViewById(R.id.username);
-        if (CurrentUserHandler.IsLoggedIn()) {
-            sideNav.getMenu().clear();
-            sideNav.inflateMenu(R.menu.drawer_loggined_menu);
-            fullName.setText(CurrentUserHandler.getCurrentUser().getFullName());
-            username.setText("(" + CurrentUserHandler.getCurrentUser().getUsername() + ")");
-        } else {
-            sideNav.getMenu().clear();
-            sideNav.inflateMenu(R.menu.drawer_menu);
-            fullName.setText("Full Name ...");
-            username.setText("(username ...)");
-        }
+        };
+        bottomNav.setOnItemSelectedListener(lsnr);
     }
 
     @Override

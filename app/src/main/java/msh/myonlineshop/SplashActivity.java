@@ -48,6 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         CurrentUserHandler.setCurrentUser(null);
 //        CurrentUserHandler.nullifyUser(this);
 
+        String strActiviyToOpen = "";
         User user = userDbHandler.getLatestUser();
         if(user!=null)
         {
@@ -57,21 +58,22 @@ public class SplashActivity extends AppCompatActivity {
                 UserService.getUserInfoFromServer(new Callback<ServiceResponse<User>>() {
                     @Override
                     public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response) {
+
                         if (response.isSuccessful() && response.body() != null) {
                             if (!response.body().isHasError()) {
                                 User userInfo = response.body().getDataList().get(0);
                                 user.setCustomerId(userInfo.getCustomerId());
-                                userDbHandler.addData(user.getContentValues());
+//                                userDbHandler.addData(user.getContentValues());
                                 CurrentUserHandler.setCurrentUser(user);
                             }
                             else if (response.body().isHasError() && response.body().getMessage().toLowerCase().startsWith("jwt expired"))
                             {
-                                //
+                                System.out.println("jwt error");
                             }
-                            else
-                            {
-                                //
-                            }
+//                            else
+//                            {
+//                                System.out.println("error maybe response.body().isHasError()");
+//                            }
                             openMainActivity();
                         }
                         else
@@ -83,16 +85,19 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ServiceResponse<User>> call, Throwable t)
                     {
-                        openErrorActivity("server failed to response, please try again ...");
+//                        openErrorActivity("server failed to response, please try again ...");
                     }
                 }, token);
             }
-            else
-                openMainActivity();
+            else {
+                System.out.println("no user.getToken()");
+//                openMainActivity();
+            }
         }
         else
         {
-            openMainActivity();
+            System.out.println("user is null");
+//            openMainActivity();
         }
     }
 
@@ -101,6 +106,7 @@ public class SplashActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     void openErrorActivity(String msg)
@@ -108,6 +114,7 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent(SplashActivity.this, ErrorActivity.class);
         intent.putExtra("msg", msg);
         startActivity(intent);
+        finish();
     }
 }
 
