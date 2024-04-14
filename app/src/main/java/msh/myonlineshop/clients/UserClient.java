@@ -7,7 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-
+//to call defined APIs
 public interface UserClient {
     @POST("user/login")
     Call<ServiceResponse<User>> login(@Body() User data);
