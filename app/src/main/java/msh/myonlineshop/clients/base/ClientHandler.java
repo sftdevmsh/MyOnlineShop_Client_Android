@@ -1,7 +1,5 @@
-package msh.myonlineshop.handlers.base;
+package msh.myonlineshop.clients.base;
 
-import msh.myonlineshop.configs.clientHandler.ApiAddresses;
-import msh.myonlineshop.configs.clientHandler.UnsafeSSLConfig;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -14,7 +12,9 @@ public class ClientHandler {
     public ClientHandler() {
         builder = new Retrofit.Builder()
                 .baseUrl(ApiAddresses.baseDomain + "/api/")
-//                .client(UnsafeSSLConfig.getUnsafeOkHttpClient().build())
+//.client(UnsafeSSLConfig.getUnsafeOkHttpClient().build())
+//for ssl self signed key
+//but, no need to use it while "android:usesCleartextTraffic="true" in AndroidManifext.xml
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
     }

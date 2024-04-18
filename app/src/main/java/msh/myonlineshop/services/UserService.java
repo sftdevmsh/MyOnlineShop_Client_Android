@@ -2,7 +2,7 @@ package msh.myonlineshop.services;
 
 
 import msh.myonlineshop.clients.UserClient;
-import msh.myonlineshop.handlers.base.ClientHandler;
+import msh.myonlineshop.clients.base.ClientHandler;
 import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
 import retrofit2.Call;

@@ -8,7 +8,7 @@
     app:cardCornerRadius="15dp">
 
     <LinearLayout
-        android:id="@+id/login_view"
+        android:id="@+id/loginLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -28,7 +28,7 @@
                 app:text="09121234567"></holosen.online.shop.components.MyTextInput>-->
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username"
+            android:id="@+id/txtUsername"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
+            android:id="@+id/txtPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -75,7 +75,7 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btnLogin"
             android:layout_width="300dp"
             android:layout_height="44dp"
             android:layout_gravity="center"

@@ -33,6 +33,12 @@ import msh.myonlineshop.fragments.HomeFragment;
 import msh.myonlineshop.fragments.LoginFragment;
 import msh.myonlineshop.fragments.ProductsFragment;
 import msh.myonlineshop.handlers.CurrentUserHandler;
+import msh.myonlineshop.models.User;
+import msh.myonlineshop.models.base.ServiceResponse;
+import msh.myonlineshop.services.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +54,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+//        init();
+
+//temp _ to test connection::::
+        User user = new User("ab","Pass1234");
+        System.out.println("uuuuu");
+        //
+        UserService.login(new Callback<ServiceResponse<User>>() {
+            @Override
+            public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response) {
+                System.out.println("rrrrrrrrrrrrr");
+                if(response.isSuccessful() && response.body() != null)
+                    if(!response.body().isHasError())
+                    {
+                        System.out.println("yohoooooooooooo");
+                        User userLogined = response.body().getDataList().get(0);
+                        //
+//                        getUserLoginedProfile(userLogined);
+                        System.out.println("tokennnn: "+userLogined.getToken());
+                    }
+                    else
+                    {
+                        System.out.println("Server Response has and error: "
+                                + response.body().getMessage());
+                    }
+                else
+                    System.out.println("Server Response is empty perhaps ");
+            }
+
+            @Override
+            public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
+                System.out.println("Server Failure: "+ t.getMessage());
+            }
+        }, user);
+
     }
 
     void init()
@@ -121,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bottomNavItemSelectedListener() {
-        System.out.println("bottomNavItemSelectedListenerrrrrrrrrrrrrrrrrrrrrrrr");
         NavigationBarView.OnItemSelectedListener lsnr = new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -153,11 +191,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-
 //        Snackbar snackbar = Snackbar.make(mainFrame, R.string.twice_back, Snackbar.LENGTH_LONG);
 //        snackbar.getView().setTranslationY(-130);
 //        snackbar.show();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -16,7 +16,7 @@ import msh.myonlineshop.handlers.CurrentUserHandler;
 import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
 import msh.myonlineshop.services.UserService;
-import msh.myonlineshop.utlities.CommonUtility;
+import msh.myonlineshop.utlities.MsgUtility;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 String strPass = txtPass.getText().toString();
 
                 if(strName.trim().isEmpty() || strPass.trim().isEmpty())
-                    CommonUtility.showMsg(btnLogin, getString(R.string.fill_required_fields));
+                    MsgUtility.showMsgShort(btnLogin, getString(R.string.fill_required_fields));
 
                 else
                 {
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 ////                                    user.setCustomerId(userInfo.getCustomerId());
 //                                    CurrentUserHandler currentUserHandler = new CurrentUserHandler();
 //                                    currentUserHandler.setCurrentUser(user);
-                                    CommonUtility.showMsg(btnLogin, getString(R.string.logged_in_successfully));
+                                    MsgUtility.showMsgShort(btnLogin, getString(R.string.logged_in_successfully));
 //                                    openMainActivity();
 
 //
@@ -93,17 +93,17 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else {
 //                                    CurrentUserHandler.nullifyUser(LoginActivity.this);
-                                    CommonUtility.showMsg(btnLogin, getString(R.string.server_response_body_has_error));
+                                    MsgUtility.showMsgShort(btnLogin, getString(R.string.server_response_body_has_error));
                                 }
                             }
                             else {
-                                CommonUtility.showMsg(btnLogin, getString(R.string.server_response_failed));
+                                MsgUtility.showMsgShort(btnLogin, getString(R.string.server_response_failed));
                             }
                         }
 
                         @Override
                         public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
-                            CommonUtility.showMsg(btnLogin, getString(R.string.server_failed_to_respond));
+                            MsgUtility.showMsgShort(btnLogin, getString(R.string.server_failed_to_respond));
                             System.out.println(getString(R.string.server_failed_to_respond));
                             System.out.println(t.getMessage());
                         }
