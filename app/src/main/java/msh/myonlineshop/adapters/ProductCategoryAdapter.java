@@ -1,13 +1,16 @@
 package msh.myonlineshop.adapters;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import msh.myonlineshop.ProductActivity;
 import msh.myonlineshop.R;
 import msh.myonlineshop.clients.base.ApiAddresses;
 import msh.myonlineshop.models.ProductCategory;
@@ -57,6 +61,23 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
                 .placeholder(R.drawable.imgLoading)
                 .error(R.drawable.imgBoken)
                 .into(holder.ivImage);
+        //
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ProductActivity.class);
+                intent.putExtra("itemProductCategory", pc);
+                ////
+                Pair[] pairs = new Pair[2];
+                pairs[0] = new Pair(holder.tvTitle, "tvTitle");
+                pairs[1] = new Pair(holder.ivImage, "ivImage");
+                //
+                ActivityOptions ao = ActivityOptions.makeSceneTransitionAnimation(activity, pairs);
+                ////
+                activity.startActivity(intent, ao.toBundle());
+            }
+        });
+
     }
 
 
