@@ -31,4 +31,7 @@
     <string name="invoices">invoices</string>
     <string name="logout">logout</string>
     <string name="twice_back">press back button twice to exit.</string>
+    <string name="popular_products">popular products</string>
+    <string name="new_products">new products</string>
+    <string name="product_categories">product categories</string>
 </resources>

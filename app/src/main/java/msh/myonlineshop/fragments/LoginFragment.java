@@ -73,6 +73,7 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("btnLogin.setOnClickListener");
                 String userName = txtUsername.getEditText().getText().toString().trim();
                 String password = txtPassword.getEditText().getText().toString().trim();
 
@@ -85,6 +86,8 @@ public class LoginFragment extends Fragment {
                 {
                     showBtnLogin(false);
                     User user = new User(userName,password);
+                    //
+                    System.out.println("LoginFragment_to UserService.login");
                     //
                     UserService.login(new Callback<ServiceResponse<User>>() {
                         @Override
@@ -118,6 +121,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void getUserLoginedProfile(User userLogined) {
+        System.out.println("getUserLoginedProfile");
+        //
         UserDbHandler userDbHandler = new UserDbHandler(mainActivity);
         userDbHandler.deleteAllUsers();
         userDbHandler.addData(userLogined.getContentValues());

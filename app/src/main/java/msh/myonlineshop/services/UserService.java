@@ -14,7 +14,7 @@ public class UserService {
     {
         ClientHandler clientHandler = new ClientHandler();
         UserClient userClient = clientHandler.getRetrofit().create(UserClient.class);
-        if(token.toLowerCase().startsWith("bearer"))
+        if(!token.toLowerCase().startsWith("bearer"))
             token = "Bearer "+token;
         Call<ServiceResponse<User>> callUser = userClient.getUserInfoFromServer(token);
         callUser.enqueue(callbackUser);

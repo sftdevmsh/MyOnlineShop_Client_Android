@@ -54,39 +54,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        init();
+        init();
 
-//temp _ to test connection::::
-        User user = new User("ab","Pass1234");
-        System.out.println("uuuuu");
-        //
-        UserService.login(new Callback<ServiceResponse<User>>() {
-            @Override
-            public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response) {
-                System.out.println("rrrrrrrrrrrrr");
-                if(response.isSuccessful() && response.body() != null)
-                    if(!response.body().isHasError())
-                    {
-                        System.out.println("yohoooooooooooo");
-                        User userLogined = response.body().getDataList().get(0);
-                        //
-//                        getUserLoginedProfile(userLogined);
-                        System.out.println("tokennnn: "+userLogined.getToken());
-                    }
-                    else
-                    {
-                        System.out.println("Server Response has and error: "
-                                + response.body().getMessage());
-                    }
-                else
-                    System.out.println("Server Response is empty perhaps ");
-            }
-
-            @Override
-            public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
-                System.out.println("Server Failure: "+ t.getMessage());
-            }
-        }, user);
+////temp _ to test connection::::
+//        User user = new User("ab","Pass1234");
+//        System.out.println("uuuuu");
+//        //
+//        UserService.login(new Callback<ServiceResponse<User>>() {
+//            @Override
+//            public void onResponse(Call<ServiceResponse<User>> call, Response<ServiceResponse<User>> response) {
+//                System.out.println("rrrrrrrrrrrrr");
+//                if(response.isSuccessful() && response.body() != null)
+//                    if(!response.body().isHasError())
+//                    {
+//                        System.out.println("yohoooooooooooo");
+//                        User userLogined = response.body().getDataList().get(0);
+//                        //
+////                        getUserLoginedProfile(userLogined);
+//                        System.out.println("tokennnn: "+userLogined.getToken());
+//                    }
+//                    else
+//                    {
+//                        System.out.println("Server Response has and error: "
+//                                + response.body().getMessage());
+//                    }
+//                else
+//                    System.out.println("Server Response is empty perhaps ");
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServiceResponse<User>> call, Throwable t) {
+//                System.out.println("Server Failure: "+ t.getMessage());
+//            }
+//        }, user);
 
     }
 
