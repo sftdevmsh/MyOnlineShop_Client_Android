@@ -18,7 +18,7 @@
             android:id="@+id/ivProductCategoryImage"
             android:layout_width="120dp"
             android:layout_height="100dp"
-            android:transitionName="category_image"
+            android:transitionName="trImage"
             android:scaleType="centerCrop"
             android:src="@drawable/shoes" />
 
@@ -34,7 +34,7 @@
                 android:id="@+id/tvProductCategoryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:transitionName="category_name"
+                android:transitionName="trTitle"
                 android:text="Product"
                 android:textColor="@android:color/white" />
 

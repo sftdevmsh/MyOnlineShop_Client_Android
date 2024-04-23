@@ -21,7 +21,7 @@
                 android:layout_height="480dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/shoes"
-                android:transitionName="trImgProductCategory" />
+                android:transitionName="trImage" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -53,10 +53,10 @@
                     android:text="Name"
                     android:textColor="@color/primaryDark"
                     android:textSize="24dp"
-                    android:transitionName="trTvProductCategoryTitle" />
+                    android:transitionName="trTitle" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rclrProductCategory"
+                    android:id="@+id/rvProducts"
                     android:layout_width="match_parent"
                     android:nestedScrollingEnabled="false"
                     android:layout_height="wrap_content">

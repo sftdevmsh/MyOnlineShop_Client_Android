@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
+import msh.myonlineshop.adapters.ProductAdapter;
 import msh.myonlineshop.clients.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.ProductCategory;
@@ -23,7 +26,8 @@ public class ProductActivity extends AppCompatActivity {
     TextView tvProductCategoryTitle;
     ImageView imgProductCategory;
     ProgressBar progressbarProductCategory;
-    RecyclerView rclrProductCategory;
+    RecyclerView rvProducts;
+    private int pageNumber = 0 , pageSize=10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +54,19 @@ public class ProductActivity extends AppCompatActivity {
         ProductService.getByCategory(new Callback<ServiceResponse<Product>>() {
             @Override
             public void onResponse(Call<ServiceResponse<Product>> call, Response<ServiceResponse<Product>> response) {
-
+                if(response.isSuccessful() && response.body()!=null)
+                    if(!response.body().isHasError())
+                    {
+                        List<Product> lst = response.body().getDataList();
+                        rvProducts.setAdapter(new ProductAdapter(ProductActivity.this, lst));
+                    }
             }
 
             @Override
             public void onFailure(Call<ServiceResponse<Product>> call, Throwable t) {
 
             }
-        });
+        }, pc.getId(), pageNumber, pageSize);
 
     }
 
@@ -65,6 +74,6 @@ public class ProductActivity extends AppCompatActivity {
         tvProductCategoryTitle = findViewById(R.id.tvProductCategoryTitle);
         imgProductCategory = findViewById(R.id.imgProductCategory);
         progressbarProductCategory = findViewById(R.id.progressbarProductCategory);
-        rclrProductCategory = findViewById(R.id.rclrProductCategory);
+        rvProducts = findViewById(R.id.rvProducts);
     }
 }
