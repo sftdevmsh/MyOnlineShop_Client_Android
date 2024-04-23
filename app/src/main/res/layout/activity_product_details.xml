@@ -5,5 +5,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductDetailsActivity">
+    <LinearLayout
+        android:id="@+id/lyo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shoes"
+                android:transitionName="trImage" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-25dp"
+            android:layout_marginBottom="-15dp"
+            android:background="@color/white"
+            android:elevation="8dp"
+            android:textAlignment="center"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="30dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="Name"
+                        android:textColor="@color/primaryDark"
+                        android:textSize="24dp"
+                        android:transitionName="trTitle" />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="Price$"
+                        android:textColor="@color/primary"
+                        android:textSize="24dp"
+                        android:transitionName="trPrice" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/lorem"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:text="@string/size"
+                        android:textColor="@color/primaryDark"
+                        android:textSize="26dp" />
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chpSizes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleLine="true"
+                            app:singleSelection="true">
+
+                        </com.google.android.material.chip.ChipGroup>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:text="@string/color"
+                        android:textColor="@color/primaryDark"
+                        android:textSize="26dp" />
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chpColors"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleLine="true"
+                            app:singleSelection="true">
+
+                        </com.google.android.material.chip.ChipGroup>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnAddToCard"
+                    android:layout_width="300dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_shape"
+                    android:text="@string/add_to_card"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
