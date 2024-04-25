@@ -63,8 +63,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         //
         String url = p.getImage();
         Picasso.get().load(url)
-                .error(R.drawable.imgBoken)
-                .placeholder(R.drawable.imgLoading)
+                .error(R.drawable.img_broken)
+                .placeholder(R.drawable.img_loading)
                 .into(img);
         //
         fillSizeChips(p);

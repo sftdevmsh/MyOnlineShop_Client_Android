@@ -55,8 +55,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         //
         String url = p.getImage();
         Picasso.get().load(url)
-                .placeholder(R.drawable.imgLoading)
-                .error(R.drawable.imgBoken)
+                .placeholder(R.drawable.img_loading)
+                .error(R.drawable.img_broken)
                 .into(holder.imgProduct);
         ////
         holder.itemView.setOnClickListener(new View.OnClickListener() {

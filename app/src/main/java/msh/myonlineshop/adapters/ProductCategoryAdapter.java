@@ -58,8 +58,8 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         String strFileUrl = ApiAddresses.getFileUrl(pc.getImage());
         Picasso.get()
                 .load(strFileUrl)
-                .placeholder(R.drawable.imgLoading)
-                .error(R.drawable.imgBoken)
+                .placeholder(R.drawable.img_loading)
+                .error(R.drawable.img_broken)
                 .into(holder.ivImage);
         //
         holder.itemView.setOnClickListener(new View.OnClickListener() {
