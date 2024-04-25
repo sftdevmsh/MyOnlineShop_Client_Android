@@ -54,10 +54,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.tvProductPrice.setText(String.valueOf(p.getPrice()));
         //
         String url = p.getImage();
-        Picasso.get().load(url)
-                .placeholder(R.drawable.img_loading)
-                .error(R.drawable.img_broken)
-                .into(holder.imgProduct);
+//        Picasso.get().load(url)
+//                .placeholder(R.drawable.img_loading)
+//                .error(R.drawable.img_broken)
+//                .into(holder.imgProduct);
         ////
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,10 +42,10 @@ public class ProductActivity extends AppCompatActivity {
         tvProductCategoryTitle.setText(pc.getTitle());
         //
         String url = ApiAddresses.getFileUrl(pc.getImage());
-        Picasso.get().load(url)
-                .error(R.drawable.img_broken)
-                .placeholder(R.drawable.img_loading)
-                .into(imgProductCategory);
+//        Picasso.get().load(url)
+//                .error(R.drawable.img_broken)
+//                .placeholder(R.drawable.img_loading)
+//                .into(imgProductCategory);
         //
         fillProductDataListForThisCategory(pc);
     }

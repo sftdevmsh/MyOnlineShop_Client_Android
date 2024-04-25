@@ -46,8 +46,13 @@ dependencies {
     implementation("androidx.annotation:annotation:1.7.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("com.github.smarteist:autoimageslider:1.3.9-appcompat")
-    implementation("com.squareup.picasso:picasso:2.71828")
+    //
+    //implementation("com.github.smarteist:autoimageslider:1.3.9-appcompat")
+    ////https://github.com/denzcoskun/ImageSlideshow
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    //
+    //implementation("com.squareup.picasso:picasso:2.71828")
+    implementation ("androidx.exifinterface:exifinterface:1.0.0")
     //end my imports
 
     testImplementation("junit:junit:4.13.2")
