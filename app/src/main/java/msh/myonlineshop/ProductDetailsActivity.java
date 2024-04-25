@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import msh.myonlineshop.models.Color;
 import msh.myonlineshop.models.Product;
