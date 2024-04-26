@@ -1,0 +1,5 @@
+/*
+kill the unwanted busy process:
+1- netstat -ao |find /i "listening"
+2- Taskkill /F /IM ***found_PID***
+*/

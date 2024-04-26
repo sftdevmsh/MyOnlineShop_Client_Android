@@ -76,8 +76,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<ServiceResponse<ProductCategory>> call, Throwable t) {
                 MsgUtility.showMsgShort(
-                        getParentFragment().getView().getRootView()
+                        activity.findViewById(R.id.bottomNav)
                         ,"Server Failure: fill product categories"
+                        , -130
                         );
             }
         });

@@ -68,7 +68,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ProductActivity.class);
-                intent.putExtra("itemProductCategory", pc);
+                intent.putExtra("data", pc);
                 ////
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair(holder.tvTitle, "tvTitle");
