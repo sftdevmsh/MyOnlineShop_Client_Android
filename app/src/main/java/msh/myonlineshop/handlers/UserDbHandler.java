@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import msh.myonlineshop.handlers.base.LocalDBHandler;
+import msh.myonlineshop.handlers.base.LocalDbHandler;
 import msh.myonlineshop.models.User;
 
-public class UserDbHandler extends LocalDBHandler<User> {
+public class UserDbHandler extends LocalDbHandler<User> {
 
     public UserDbHandler(Context context) {
         super(context);
@@ -19,7 +19,7 @@ public class UserDbHandler extends LocalDBHandler<User> {
     }
 
     @Override
-    public String getCreateQuery() {
+    public String getCreateTableQuery() {
         return "CREATE TABLE IF NOT EXISTS " + getTableName() +
                 "(" + User.key_id + " INTEGER PRIMARY KEY," +
                 User.key_customerId + " INTEGER," +
@@ -30,7 +30,7 @@ public class UserDbHandler extends LocalDBHandler<User> {
     }
 
     @Override
-    public String getDropQuery() {
+    public String getDropTableQuery() {
         return "DROP TABLE IF EXISTS " + getTableName();
     }
 

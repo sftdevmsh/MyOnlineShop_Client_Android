@@ -5,25 +5,24 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public abstract class LocalDBHandler<T> extends SQLiteOpenHelper {
+public abstract class LocalDbHandler<T> extends SQLiteOpenHelper {
 
     public final static int DatabaseVersion = 1;
     public final static String DatabaseName = "MyOnlineShop";
 
-    public LocalDBHandler(Context context)
+    public LocalDbHandler(Context context)
     {
         super(context, DatabaseName, null, DatabaseVersion);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(getCreateQuery());
-//        db.close();
+        db.execSQL(getCreateTableQuery());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(getDropQuery());
+        db.execSQL(getDropTableQuery());
         onCreate(db);
         db.close();
     }
@@ -42,8 +41,7 @@ public abstract class LocalDBHandler<T> extends SQLiteOpenHelper {
         db.close();
     }
 
-
-    public abstract String getTableName();
-    public abstract String getCreateQuery();
-    public abstract String getDropQuery();
+    protected abstract String getTableName();
+    protected abstract String getCreateTableQuery();
+    protected abstract String getDropTableQuery();
 }

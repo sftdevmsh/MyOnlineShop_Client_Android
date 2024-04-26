@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -13,11 +14,16 @@ import android.widget.TextView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
+import msh.myonlineshop.clients.base.ApiAddresses;
+import msh.myonlineshop.handlers.CardDbHandler;
+import msh.myonlineshop.models.CardItem;
 import msh.myonlineshop.models.Color;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.Size;
+import msh.myonlineshop.utlities.MsgUtility;
 
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -40,19 +46,54 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     void init(){
+        //
         bindViews();
         //
-        Product p = (Product) getIntent().getExtras().get("data");
+        product = (Product) getIntent().getExtras().get("data");
         //
-        fillPageWithData(p);
+        fillPageWithData();
+        //
+        btnAddToCardClickListener();
+    }
 
+    private void btnAddToCardClickListener() {
+        btnAddToCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(product.getSizesList().size()<=0 || selectedSize == null)
+                    MsgUtility.showMsgShort(btnAddToCard, "Please select a Size option.");
+                else if(product.getColorsList().size()<=0 || selectedColor == null)
+                    MsgUtility.showMsgShort(btnAddToCard, "Please select a Color option.");
+                else {
+                    try {
+                        CardItem cardItem = new CardItem();
+                        cardItem.setProduct(product);
+                        cardItem.setColor(selectedColor);
+                        cardItem.setSize(selectedSize);
+                        cardItem.setQuantity(1);
+                        //
+                        CardDbHandler cardDbHandler = new CardDbHandler(ProductDetailsActivity.this);
+                        cardDbHandler.addToBasket(cardItem);
+                        MsgUtility.showMsgShort(btnAddToCard,"Successfully added");
+                    }
+                    catch (Exception e)
+                    {
+                        MsgUtility.showMsgShort(btnAddToCard,"Error adding order to the basket");
+                    }
+                    //
+//                    finish();
+//                    ProductDetailsActivity.this.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                }
+
+            }
+        });
     }
 
 
-    private void fillPageWithData(Product p) {
+    private void fillPageWithData() {
         //
-        tvTitle.setText(p.getTitle());
-        tvPrice.setText(p.getPrice()+"$");
+        tvTitle.setText(product.getTitle());
+        tvPrice.setText(product.getPrice()+"$");
         //
         //tvDescription.setText(p.getDescription());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -61,19 +102,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
             tvDescription.setText(Html.fromHtml(product.getDescription()));
         }
         //
-        String url = p.getImage();
-//        Picasso.get().load(url)
-//                .error(R.drawable.img_broken)
-//                .placeholder(R.drawable.img_loading)
-//                .into(img);
+        String url = ApiAddresses.getFileUrl(product.getImage());
+        Picasso.get().load(url)
+                .error(R.drawable.img_broken)
+                .placeholder(R.drawable.img_loading)
+                .into(img);
         //
-        fillSizeChips(p);
+        fillColorChips();
         //
-        fillSizeChips(p);
+        fillSizeChips();
     }
 
-    private void fillSizeChips(Product p) {
-        for(Size s:p.getSizesList())
+    private void fillSizeChips() {
+        for(Size s:product.getSizesList())
         {
             Chip chp = new Chip(this);
             chp.setText(s.getTitle());
@@ -91,15 +132,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void fillColorChips(Product p) {
-        for(Color c:p.getColorsList())
+    private void fillColorChips() {
+        System.out.println("p.getColors().size(): "+product.getColors().size());
+        for(Color c:product.getColorsList())
         {
             Chip chp = new Chip(this);
-            chp.setText(c.getName());
+            chp.setText(c.getTitle());
             chp.setCheckable(true);
             //
             int iColor = android.graphics.Color.parseColor(c.getValue());
             chp.setTextColor(iColor);
+            chp.setBackgroundColor(iColor);
+            //
+            System.out.println("c.getTitle(): "+c.getTitle());
+            System.out.println("iColor: "+iColor);
             //
             chp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -110,7 +156,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         selectedColor= null;
                 }
             });
-            chpSizes.addView(chp);
+            chpColors.addView(chp);
         }
     }
 
@@ -121,5 +167,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvDescription =  findViewById(R.id.tvDescription);
         chpSizes = findViewById(R.id.chpSizes);
         chpColors = findViewById(R.id.chpColors);
+        btnAddToCard = findViewById(R.id.btnAddToCard);
     }
 }

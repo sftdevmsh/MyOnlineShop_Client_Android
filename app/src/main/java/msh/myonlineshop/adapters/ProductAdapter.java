@@ -16,11 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.squareup.picasso.Picasso;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 import java.util.zip.Inflater;
 
 import msh.myonlineshop.ProductActivity;
+import msh.myonlineshop.ProductDetailsActivity;
 import msh.myonlineshop.R;
+import msh.myonlineshop.clients.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.base.ServiceResponse;
 import retrofit2.Callback;
@@ -53,16 +57,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.tvProductTitle.setText(p.getTitle());
         holder.tvProductPrice.setText(String.valueOf(p.getPrice()));
         //
-        String url = p.getImage();
-//        Picasso.get().load(url)
-//                .placeholder(R.drawable.img_loading)
-//                .error(R.drawable.img_broken)
-//                .into(holder.imgProduct);
+        String url = ApiAddresses.getFileUrl(p.getImage());
+        System.out.println("url: "+url);
+        Picasso.get().load(url)
+                .placeholder(R.drawable.img_loading)
+                .error(R.drawable.img_broken)
+                .into(holder.imgProduct);
         ////
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, ProductActivity.class);
+                Intent intent = new Intent(activity, ProductDetailsActivity.class);
                 intent.putExtra("data",p);
                 //
                 Pair[] pairs = new Pair[3];
