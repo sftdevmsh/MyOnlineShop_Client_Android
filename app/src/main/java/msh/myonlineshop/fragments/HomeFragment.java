@@ -14,11 +14,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import msh.myonlineshop.R;
 import msh.myonlineshop.adapters.ProductAdapter;
 import msh.myonlineshop.adapters.ProductCategoryAdapter;
+import msh.myonlineshop.clients.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.ProductCategory;
 import msh.myonlineshop.models.base.ServiceResponse;
@@ -33,6 +39,7 @@ public class HomeFragment extends Fragment {
 
     Activity activity;
     RecyclerView rvProductCategories, rvNewProducts, rvPopularProducts;
+    ImageSlider imgSlider;
 
     public HomeFragment(Activity activity) {
         this.activity = activity;
@@ -49,9 +56,25 @@ public class HomeFragment extends Fragment {
 
     private void init(ViewGroup vg) {
         bindViews(vg);
+        fillImgSlider();
         fillRvProductCategories();
         fillRvNewProducts();
         fillRvPopularProducts();
+    }
+
+    private void fillImgSlider() {
+        ArrayList<SlideModel> imageList = new ArrayList<SlideModel>(); // Create image list
+        //
+        // imageList.add(SlideModel("String Url" or R.drawable)
+        // imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
+        //
+        for(int i = 1;i<=3;i++) {
+            String url = ApiAddresses.getFileUrl("shopping"+i+".jpg");
+            String description = ("shopping"+i+": it is a good shopping time").trim();
+            SlideModel sm = new SlideModel(url, "description", ScaleTypes.CENTER_INSIDE);
+            imageList.add(sm);
+        }
+        imgSlider.setImageList(imageList);
     }
 
 
@@ -141,6 +164,7 @@ public class HomeFragment extends Fragment {
         rvProductCategories = vg.findViewById(R.id.rvProductCategories);
         rvNewProducts = vg.findViewById(R.id.rvNewProducts);
         rvPopularProducts = vg.findViewById(R.id.rvPopularProducts);
+        imgSlider = vg.findViewById(R.id.imgSlider);
     }
 
 

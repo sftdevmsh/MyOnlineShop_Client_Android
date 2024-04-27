@@ -81,8 +81,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         MsgUtility.showMsgShort(btnAddToCard,"Error adding order to the basket");
                     }
                     //
-//                    finish();
-//                    ProductDetailsActivity.this.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    finish();
+                    ProductDetailsActivity.this.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 }
 
             }
