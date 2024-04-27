@@ -13,11 +13,11 @@
         app:cardCornerRadius="15dp"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="200dp">
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/imgSlider"
-            android:layout_height="100dp"
-            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             app:iss_auto_cycle="true"
             app:iss_period="1000"
             app:iss_delay="1000"

@@ -1,9 +1,12 @@
 package msh.myonlineshop;
 
+import static java.lang.Thread.sleep;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +52,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         //
         bindViews();
         //
+        btnAddToCard.setVisibility(View.VISIBLE);
+        //
         product = (Product) getIntent().getExtras().get("data");
         //
         fillPageWithData();
@@ -60,6 +65,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnAddToCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAddToCard.setVisibility(View.GONE);
                 if(product.getSizesList().size()<=0 || selectedSize == null)
                     MsgUtility.showMsgShort(btnAddToCard, "Please select a Size option.");
                 else if(product.getColorsList().size()<=0 || selectedColor == null)
@@ -81,10 +87,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         MsgUtility.showMsgShort(btnAddToCard,"Error adding order to the basket");
                     }
                     //
-                    finish();
-                    ProductDetailsActivity.this.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            // Actions to do after 10 seconds
+                            finish();
+                            ProductDetailsActivity.this.overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
+                        }
+                    }, 2000);
                 }
-
             }
         });
     }

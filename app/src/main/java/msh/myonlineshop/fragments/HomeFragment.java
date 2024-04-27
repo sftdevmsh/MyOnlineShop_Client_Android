@@ -68,13 +68,14 @@ public class HomeFragment extends Fragment {
         // imageList.add(SlideModel("String Url" or R.drawable)
         // imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
         //
-        for(int i = 1;i<=3;i++) {
+        for(int i = 0;i<=4;i++) {
             String url = ApiAddresses.getFileUrl("shopping"+i+".jpg");
-            String description = ("shopping"+i+": it is a good shopping time").trim();
-            SlideModel sm = new SlideModel(url, "description", ScaleTypes.CENTER_INSIDE);
+            String description = ("shopping"+(i+1)+": it is a good shopping time").trim();
+            SlideModel sm = new SlideModel(url, description, ScaleTypes.FIT);
             imageList.add(sm);
         }
         imgSlider.setImageList(imageList);
+        imgSlider.startSliding(5000);
     }
 
 
