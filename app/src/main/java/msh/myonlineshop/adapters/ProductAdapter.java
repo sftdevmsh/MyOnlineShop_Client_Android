@@ -19,15 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
-import msh.myonlineshop.ProductActivity;
 import msh.myonlineshop.ProductDetailsActivity;
 import msh.myonlineshop.R;
 import msh.myonlineshop.clients.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
-import msh.myonlineshop.models.base.ServiceResponse;
-import retrofit2.Callback;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
 
@@ -45,7 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public ProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context ctx = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(ctx);
-        View v = layoutInflater.inflate(R.layout.product_item_layout, parent, false);
+        View v = layoutInflater.inflate(R.layout.layout_item_product, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

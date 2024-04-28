@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="5dp"
-            android:background="@drawable/product_category_title_shape"
+            android:background="@drawable/shape_product_category_title"
             android:textAlignment="center">
 
             <TextView

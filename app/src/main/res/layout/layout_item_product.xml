@@ -26,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/product_category_title_shape"
+            android:background="@drawable/shape_product_category_title"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="12dp"

@@ -32,6 +32,7 @@ import msh.myonlineshop.fragments.BlogFragment;
 import msh.myonlineshop.fragments.HomeFragment;
 import msh.myonlineshop.fragments.LoginFragment;
 import msh.myonlineshop.fragments.ProductsFragment;
+import msh.myonlineshop.handlers.CardDbHandler;
 import msh.myonlineshop.handlers.CurrentUserHandler;
 import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
@@ -96,8 +97,11 @@ public class MainActivity extends AppCompatActivity {
         syncMenu();
         linkTopAppBarWithSideNavigationView();
         sideNavItemSelectedListener();
+        //
         bottomNavItemSelectedListener();
         bottomNav.setSelectedItemId(R.id.home);
+        //
+        syncBadges();
     }
 
 
@@ -150,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId() == R.id.login)
                     fragmentTransaction.replace(R.id.mainFrameLayout, new LoginFragment(MainActivity.this));
                 else if(item.getItemId() == R.id.about)
-                    fragmentTransaction.replace(R.id.mainFrameLayout, new AboutFragment());
+                    fragmentTransaction.replace(R.id.mainFrameLayout, new AboutFragment(MainActivity.this));
 
                 fragmentTransaction.commit();
                 mainDrawer.closeDrawer(Gravity.LEFT);
@@ -204,18 +208,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//    public void syncBadges() {
-//        CardDBHandler cardDBHandler = new CardDBHandler(this);
-//        int basketCount = cardDBHandler.getAllBasketDataCount();
-//        BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.basket);
-//        if (basketCount > 0) {
-//            badge.setVisible(true);
-//            badge.setNumber(basketCount);
-//        } else {
-//            badge.setVisible(false);
-//            badge.setNumber(0);
-//        }
-//    }
+    public void syncBadges() {
+        CardDbHandler cardDBHandler = new CardDbHandler(this);
+        int basketCount = cardDBHandler.getAllBasketDataCount();
+        BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.basket);
+        if (basketCount > 0) {
+            badge.setVisible(true);
+            badge.setNumber(basketCount);
+        } else {
+            badge.setVisible(false);
+            badge.setNumber(0);
+        }
+    }
 
 
 

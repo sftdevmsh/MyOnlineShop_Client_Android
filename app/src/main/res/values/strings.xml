@@ -38,4 +38,9 @@
     <string name="size">size</string>
     <string name="color">color\n</string>
     <string name="add_to_card">add to card</string>
+    <string name="new_filter">new filter\n</string>
+    <string name="popular_filter">popular filter</string>
+    <string name="expensive_filter">expensive filter</string>
+    <string name="cheap_filter">cheap filter</string>
+    <string name="filtered_products">filtered products</string>
 </resources>

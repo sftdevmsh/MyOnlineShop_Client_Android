@@ -1,10 +1,12 @@
-//package msh.myonlineshop.clients;
-//
-//import retrofit2.Call;
-//import retrofit2.http.Body;
-//import retrofit2.http.PUT;
-//
-//public interface CustomerClient {
-//    @PUT("customer/updateInfo")
-//    Call<ServiceResponse<Customer>> updateInfo(@Body() Customer data);
-//}
+package msh.myonlineshop.clients;
+
+import msh.myonlineshop.models.Customer;
+import msh.myonlineshop.models.base.ServiceResponse;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.PUT;
+
+public interface CustomerClient {
+    @PUT("customer/updateInfo")
+    Call<ServiceResponse<Customer>> updateInfo(@Body() Customer data);
+}

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +43,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         //
-        View view = inflater.inflate(R.layout.product_category_item_layout , parent, false);
+        View view = inflater.inflate(R.layout.layout_item_product_category, parent, false);
         //
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;

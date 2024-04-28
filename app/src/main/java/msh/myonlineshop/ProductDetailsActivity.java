@@ -66,10 +66,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnAddToCard.setVisibility(View.GONE);
+                //
                 if(product.getSizesList().size()<=0 || selectedSize == null)
                     MsgUtility.showMsgShort(btnAddToCard, "Please select a Size option.");
                 else if(product.getColorsList().size()<=0 || selectedColor == null)
                     MsgUtility.showMsgShort(btnAddToCard, "Please select a Color option.");
+                //
                 else {
                     try {
                         CardItem cardItem = new CardItem();

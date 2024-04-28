@@ -27,9 +27,11 @@ import msh.myonlineshop.adapters.ProductCategoryAdapter;
 import msh.myonlineshop.clients.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.ProductCategory;
+import msh.myonlineshop.models.SliderItem;
 import msh.myonlineshop.models.base.ServiceResponse;
 import msh.myonlineshop.services.ProductCategoryService;
 import msh.myonlineshop.services.ProductService;
+import msh.myonlineshop.services.SliderService;
 import msh.myonlineshop.utlities.MsgUtility;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +64,38 @@ public class HomeFragment extends Fragment {
         fillRvPopularProducts();
     }
 
+
     private void fillImgSlider() {
+        SliderService.get(new Callback<ServiceResponse<SliderItem>>() {
+            @Override
+            public void onResponse(Call<ServiceResponse<SliderItem>> call, Response<ServiceResponse<SliderItem>> response) {
+                if(response.isSuccessful() && response.body()!=null)
+                    if(!response.body().isHasError())
+                    {
+                        ArrayList<SlideModel> sliderImageList = new ArrayList<>();
+                        //
+                        List<SliderItem> imageList = response.body().getDataList();
+                        //
+                        imageList.stream().forEach( s -> {
+                            String url = ApiAddresses.getFileUrl(s.getImage());
+                            String description = s.getDescription();
+                            SlideModel sm = new SlideModel(url, description, ScaleTypes.FIT);
+                            //
+                            sliderImageList.add(sm);
+                        });
+                        //
+                        imgSlider.setImageList(sliderImageList);
+                        imgSlider.startSliding(5000);
+                    }
+            }
+
+            @Override
+            public void onFailure(Call<ServiceResponse<SliderItem>> call, Throwable t) {
+                MsgUtility.showMsgShort(imgSlider, "Server Failure: could not get slider images");
+            }
+        });
+    }
+    private void fillImgSliderTemp() {
         ArrayList<SlideModel> imageList = new ArrayList<SlideModel>(); // Create image list
         //
         // imageList.add(SlideModel("String Url" or R.drawable)
@@ -102,7 +135,7 @@ public class HomeFragment extends Fragment {
                 MsgUtility.showMsgShort(
                         activity.findViewById(R.id.bottomNav)
                         ,"Server Failure: fill product categories"
-                        , -130
+                       // , -130
                         );
             }
         });

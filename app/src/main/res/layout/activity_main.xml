@@ -76,7 +76,7 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="@drawable/bottom_nav_shape"
+            android:background="@drawable/shape_bottom_nav"
             app:elevation="10dp"
             android:layout_gravity="bottom"
             app:menu="@menu/bottom_nav_menu">
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start|left"
-        app:headerLayout="@layout/drawer_header_layout"
+        app:headerLayout="@layout/layout_drawer_header"
         app:menu="@menu/drawer_menu">
     </com.google.android.material.navigation.NavigationView>
 

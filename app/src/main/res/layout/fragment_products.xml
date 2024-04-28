@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProductsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Productsssssssss" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/product_categories" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFrmProductsCategoryList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.ChipGroup
+                app:checkedChip="@+id/chpGrpFrmProducts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true"
+                android:layout_marginLeft="5dp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpFrmProductsNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/new_filter"
+                    app:chipIcon="@drawable/ic_new_releases_black_24dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpFrmProductsPopular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/popular_filter"
+                    app:chipIcon="@drawable/ic_mood_black_24dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpFrmProductsCheap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/cheap_filter"
+                    app:chipIcon="@drawable/ic_money_off_black_24dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpFrmProductsExpensive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/expensive_filter"
+                    app:chipIcon="@drawable/ic_attach_money_black_24dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tvFiltered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/filtered_products" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFrmProductsFilteredList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+
 
 </FrameLayout>
