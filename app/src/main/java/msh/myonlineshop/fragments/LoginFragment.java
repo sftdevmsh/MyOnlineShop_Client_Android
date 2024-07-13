@@ -123,9 +123,12 @@ public class LoginFragment extends Fragment {
     private void getUserLoginedProfile(User userLogined) {
         System.out.println("getUserLoginedProfile");
         //
-        UserDbHandler userDbHandler = new UserDbHandler(mainActivity);
-        userDbHandler.deleteAllUsers();
-        userDbHandler.addData(userLogined.getContentValues());
+        UserDbHandler usrDbHandler = new UserDbHandler(mainActivity);
+        try {
+            usrDbHandler.deleteAllUsers();
+        }
+        catch (Exception e){}
+        usrDbHandler.addData(userLogined.getContentValues());
         //
         UserService.getUserInfoFromServer(new Callback<ServiceResponse<User>>() {
             @Override

@@ -13,18 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import msh.myonlineshop.R;
+import msh.myonlineshop.adapters.ProductAdapter;
 import msh.myonlineshop.adapters.ProductCategoryAdapter;
+import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.ProductCategory;
 import msh.myonlineshop.models.base.ServiceResponse;
 import msh.myonlineshop.services.ProductCategoryService;
+import msh.myonlineshop.services.ProductService;
 import msh.myonlineshop.utlities.MsgUtility;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,10 +40,10 @@ import retrofit2.Response;
 public class ProductsFragment extends Fragment {
 
     Activity activity;
-    RecyclerView rvFrmProductsFilteredList, rvFrmProductsCategoryList;
+    RecyclerView rvFilteredList, rvCategoryList;
     TextView tvFiltered;
-    Chip chpFrmProductsExpensive, chpFrmProductsCheap, chpFrmProductsPopular, chpFrmProductsNew;
-    ChipGroup chpGrpFrmProducts;
+    Chip chpExpensive, chpCheap, chpPopular, chpNew;
+    ChipGroup chpGrp;
 
     public ProductsFragment(Activity activity) {
         this.activity = activity;
@@ -58,13 +64,9 @@ public class ProductsFragment extends Fragment {
         fillProductCategoryData();
         //
         GridLayoutManager lyo = new GridLayoutManager(activity, 2, RecyclerView.VERTICAL, false);
-        rvFrmProductsFilteredList.setLayoutManager(lyo);
+        rvFilteredList.setLayoutManager(lyo);
+        ////
         fillFilteredData();
-
-    }
-
-    private void fillFilteredData() {
-
     }
 
     private void fillProductCategoryData() {
@@ -76,30 +78,114 @@ public class ProductsFragment extends Fragment {
                     List<ProductCategory> lst = response.body().getDataList();
                     ProductCategoryAdapter adapter = new ProductCategoryAdapter(activity, lst);
                     //
-                    rvFrmProductsCategoryList.setAdapter(adapter);
+                    rvCategoryList.setAdapter(adapter);
                     //
                     LinearLayoutManager lyo = new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false);
-                    rvFrmProductsCategoryList.setLayoutManager(lyo);
+                    rvCategoryList.setLayoutManager(lyo);
                 }
             }
 
             @Override
             public void onFailure(Call<ServiceResponse<ProductCategory>> call, Throwable t) {
-                MsgUtility.showMsgShort(rvFrmProductsCategoryList,"Server Failure");
+                MsgUtility.showMsgShort(rvCategoryList,"Server Failure");
             }
         });
     }
 
-    private void bindView(ViewGroup vg) {
-        rvFrmProductsFilteredList = vg.findViewById(R.id.rvFrmProductsFilteredList);
-        rvFrmProductsCategoryList = vg.findViewById(R.id.rvFrmProductsCategoryList);
-        tvFiltered = vg.findViewById(R.id.tvFiltered);
-        chpFrmProductsExpensive = vg.findViewById(R.id.chpFrmProductsExpensive);
-        chpFrmProductsCheap = vg.findViewById(R.id.chpFrmProductsCheap);
-        chpFrmProductsPopular = vg.findViewById(R.id.chpFrmProductsPopular);
-        chpFrmProductsNew = vg.findViewById(R.id.chpFrmProductsNew);
-        chpGrpFrmProducts = vg.findViewById(R.id.chpGrpFrmProducts);
+
+    private void fillFilteredData() {
+        chpNew.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    fillFilteredDataForNew();
+            }
+        });
+
+        chpPopular.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    fillFilteredDataForPopular();
+            }
+        });
+
+        chpCheap.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    fillFilteredDataForCheap();
+            }
+        });
+
+        chpExpensive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    fillFilteredDataForCheap();
+            }
+        });
+
     }
 
+    private void fillFilteredDataForNew()
+    {
+        ProductService.getNew(new Callback<ServiceResponse<Product>>() {
+            @Override
+            public void onResponse(Call<ServiceResponse<Product>> call, Response<ServiceResponse<Product>> response) {
+                if (response.isSuccessful() && response.body() != null && !response.body().isHasError()) {
+                    List<Product> dataList = response.body().getDataList();
+                    rvFilteredList.setAdapter(new ProductAdapter(activity, dataList));
+                    tvFiltered.setText(getResources().getText(R.string.new_products));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServiceResponse<Product>> call, Throwable t) {
+                Toast.makeText(activity, "Error on getting products data from server", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void fillFilteredDataForCheap()
+    {
+    }
+
+    private void fillFilteredDataForExpensive()
+    {
+    }
+
+    private void fillFilteredDataForPopular()
+    {
+        ProductService.getPopular(new Callback<ServiceResponse<Product>>() {
+            @Override
+            public void onResponse(Call<ServiceResponse<Product>> call, Response<ServiceResponse<Product>> response) {
+                if (response.isSuccessful() && response.body() != null && !response.body().isHasError()) {
+                    List<Product> dataList = response.body().getDataList();
+                    rvFilteredList.setAdapter(new ProductAdapter(activity, dataList));
+                    tvFiltered.setText(getResources().getText(R.string.popular_products));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServiceResponse<Product>> call, Throwable t) {
+                Toast.makeText(activity, "Error on getting products data from server", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+
+
+    private void bindView(ViewGroup vg) {
+        rvFilteredList = vg.findViewById(R.id.rvFilteredList);
+        rvCategoryList = vg.findViewById(R.id.rvCategoryList);
+        tvFiltered = vg.findViewById(R.id.tvFiltered);
+        chpExpensive = vg.findViewById(R.id.chpExpensive);
+        chpCheap = vg.findViewById(R.id.chpCheap);
+        chpPopular = vg.findViewById(R.id.chpPopular);
+        chpNew = vg.findViewById(R.id.chpNew);
+        chpGrp = vg.findViewById(R.id.chpGrp);
+    }
 
 }

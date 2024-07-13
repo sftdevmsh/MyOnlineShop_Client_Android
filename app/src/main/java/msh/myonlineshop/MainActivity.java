@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        syncBadges();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -101,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavItemSelectedListener();
         bottomNav.setSelectedItemId(R.id.home);
         //
-        syncBadges();
+        //syncBadges();
     }
 
 

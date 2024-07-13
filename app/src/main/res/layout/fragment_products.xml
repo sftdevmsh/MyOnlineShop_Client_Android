@@ -18,7 +18,7 @@
             android:text="@string/product_categories" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFrmProductsCategoryList"
+            android:id="@+id/rvCategoryList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.chip.ChipGroup
-                app:checkedChip="@+id/chpGrpFrmProducts"
+                app:checkedChip="@+id/chpGrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleLine="true"
@@ -36,7 +36,7 @@
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chpFrmProductsNew"
+                    android:id="@+id/chpNew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -44,7 +44,7 @@
                     app:chipIcon="@drawable/ic_new_releases_black_24dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chpFrmProductsPopular"
+                    android:id="@+id/chpPopular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -52,7 +52,7 @@
                     app:chipIcon="@drawable/ic_mood_black_24dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chpFrmProductsCheap"
+                    android:id="@+id/chpCheap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -60,7 +60,7 @@
                     app:chipIcon="@drawable/ic_money_off_black_24dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chpFrmProductsExpensive"
+                    android:id="@+id/chpExpensive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -79,7 +79,7 @@
             android:text="@string/filtered_products" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFrmProductsFilteredList"
+            android:id="@+id/rvFilteredList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
