@@ -86,7 +86,7 @@ public class BlogDetailActivity extends AppCompatActivity {
         }, blog.getId());
     }
 
-
+//
     void bindViews(){
         tvTitle = findViewById(R.id.tvTitle);
         tvSubtitle = findViewById(R.id.tvSubtitle);
