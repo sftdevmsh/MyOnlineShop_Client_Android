@@ -1,7 +1,6 @@
 package msh.myonlineshop.fragments;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import msh.myonlineshop.MainActivity;
 import msh.myonlineshop.R;
-import msh.myonlineshop.handlers.CurrentUserHandler;
-import msh.myonlineshop.handlers.UserDbHandler;
+import msh.myonlineshop.localDbHandler.CurrentUserHandler;
+import msh.myonlineshop.localDbHandler.UserDbHandler;
 import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
 import msh.myonlineshop.services.UserService;

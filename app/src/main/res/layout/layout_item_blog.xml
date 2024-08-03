@@ -22,13 +22,14 @@
             android:weightSum="10">
 
             <ImageView
-                android:id="@+id/ivBlogImage"
+                android:id="@+id/iv"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="7dp"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                android:src="@drawable/shoes" />
+                android:src="@drawable/img_loading"
+                android:transitionName="trImage"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -37,20 +38,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvBlogTitle"
+                    android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title"
                     android:textColor="@color/primaryDark"
-                    android:textSize="19dp" />
+                    android:textSize="19dp"
+                    android:transitionName="trTitle"/>
 
                 <TextView
-                    android:id="@+id/tvBlogSubtitle"
+                    android:id="@+id/tvSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subtitle"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:transitionName="trSubtitle"/>
 
             </LinearLayout>
 

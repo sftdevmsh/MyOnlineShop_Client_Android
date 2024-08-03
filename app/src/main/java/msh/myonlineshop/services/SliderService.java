@@ -1,11 +1,9 @@
 package msh.myonlineshop.services;
 
 
-import msh.myonlineshop.clients.SliderClient;
-import msh.myonlineshop.clients.UserClient;
-import msh.myonlineshop.clients.base.ClientHandler;
+import msh.myonlineshop.clientHandler.SliderClient;
+import msh.myonlineshop.clientHandler.base.ClientHandler;
 import msh.myonlineshop.models.SliderItem;
-import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -3,7 +3,6 @@ package msh.myonlineshop;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 //import androidx.appcompat.R;
 //import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -32,14 +30,8 @@ import msh.myonlineshop.fragments.BlogFragment;
 import msh.myonlineshop.fragments.HomeFragment;
 import msh.myonlineshop.fragments.LoginFragment;
 import msh.myonlineshop.fragments.ProductsFragment;
-import msh.myonlineshop.handlers.CardDbHandler;
-import msh.myonlineshop.handlers.CurrentUserHandler;
-import msh.myonlineshop.models.User;
-import msh.myonlineshop.models.base.ServiceResponse;
-import msh.myonlineshop.services.UserService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import msh.myonlineshop.localDbHandler.CardDbHandler;
+import msh.myonlineshop.localDbHandler.CurrentUserHandler;
 
 public class MainActivity extends AppCompatActivity {
 

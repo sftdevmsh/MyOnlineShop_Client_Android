@@ -20,8 +20,8 @@ import com.google.android.material.chip.ChipGroup;
 import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
-import msh.myonlineshop.clients.base.ApiAddresses;
-import msh.myonlineshop.handlers.CardDbHandler;
+import msh.myonlineshop.clientHandler.base.ApiAddresses;
+import msh.myonlineshop.localDbHandler.CardDbHandler;
 import msh.myonlineshop.models.CardItem;
 import msh.myonlineshop.models.Color;
 import msh.myonlineshop.models.Product;

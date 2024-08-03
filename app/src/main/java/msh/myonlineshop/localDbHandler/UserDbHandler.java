@@ -1,10 +1,10 @@
-package msh.myonlineshop.handlers;
+package msh.myonlineshop.localDbHandler;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import msh.myonlineshop.handlers.base.LocalDbHandler;
+import msh.myonlineshop.localDbHandler.base.LocalDbHandler;
 import msh.myonlineshop.models.User;
 
 public class UserDbHandler extends LocalDbHandler<User> {

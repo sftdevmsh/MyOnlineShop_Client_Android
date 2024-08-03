@@ -1,4 +1,4 @@
-package msh.myonlineshop.handlers;
+package msh.myonlineshop.localDbHandler;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import msh.myonlineshop.ProductDetailsActivity;
-import msh.myonlineshop.handlers.base.LocalDbHandler;
+import msh.myonlineshop.localDbHandler.base.LocalDbHandler;
 import msh.myonlineshop.models.CardItem;
 
 public class CardDbHandler extends LocalDbHandler<ProductDetailsActivity> {
@@ -70,10 +70,12 @@ public class CardDbHandler extends LocalDbHandler<ProductDetailsActivity> {
         //
         if (cursor != null)
             cursor.moveToNext();
-
+        //**etx
+        db.close();
+        //
         if (cursor.getCount() == 0)
             return null;
-
+        //
         return new CardItem(cursor);
     }
 
@@ -108,6 +110,9 @@ public class CardDbHandler extends LocalDbHandler<ProductDetailsActivity> {
 
         if (cursor != null)
             cursor.moveToNext();
+
+        //**etx
+        db.close();
 
         if (cursor.getCount() == 0)
             return null;
@@ -153,6 +158,8 @@ public class CardDbHandler extends LocalDbHandler<ProductDetailsActivity> {
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
         cursor.close();
+        //**etx
+        db.close();
         return count;
     }
 
@@ -163,14 +170,19 @@ public class CardDbHandler extends LocalDbHandler<ProductDetailsActivity> {
         Cursor cursor = db.rawQuery(allQuery, null);
         if (cursor != null)
             cursor.moveToNext();
-        if (cursor.getCount() == 0)
+        if (cursor.getCount() == 0) {
+            //**etx
+            db.close();
             return new ArrayList<>();
+        }
         //
         List<CardItem> result = new ArrayList<>();
         do {
             result.add(new CardItem(cursor));
         } while (cursor.moveToNext());
 
+        //**etx
+        db.close();
         return result;
     }
 
@@ -185,6 +197,8 @@ public class CardDbHandler extends LocalDbHandler<ProductDetailsActivity> {
                 , CardItem.key_id + "=?"
                 , new String[]{String.valueOf(data.getId())}
         );
+        //**etx
+        db.close();
         return i;
     }
 

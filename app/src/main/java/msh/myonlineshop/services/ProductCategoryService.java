@@ -1,7 +1,7 @@
 package msh.myonlineshop.services;
 
-import msh.myonlineshop.clients.ProductCategoryClient;
-import msh.myonlineshop.clients.base.ClientHandler;
+import msh.myonlineshop.clientHandler.ProductCategoryClient;
+import msh.myonlineshop.clientHandler.base.ClientHandler;
 import msh.myonlineshop.models.ProductCategory;
 import msh.myonlineshop.models.base.ServiceResponse;
 import retrofit2.Call;

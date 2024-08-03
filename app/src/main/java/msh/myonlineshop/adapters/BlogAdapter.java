@@ -19,9 +19,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import msh.myonlineshop.ProductActivity;
+import msh.myonlineshop.BlogDetailActivity;
 import msh.myonlineshop.R;
-import msh.myonlineshop.clients.base.ApiAddresses;
+import msh.myonlineshop.clientHandler.base.ApiAddresses;
 import msh.myonlineshop.models.Blog;
 
 public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder>{
@@ -48,25 +48,25 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Blog blog = lst.get(position);
         //
-        holder.tvBlogTitle.setText(blog.getTitle());
-        holder.tvBlogSubtitle.setText(blog.getSubtitle());
+        holder.tvTitle.setText(blog.getTitle());
+        holder.tvSubtitle.setText(blog.getSubtitle());
         //
         String url = ApiAddresses.getFileUrl(blog.getImage());
         Picasso.get().load(url)
                 .placeholder(R.drawable.img_loading)
                 .error(R.drawable.img_loading)
-                .into(holder.ivBlogImage);
+                .into(holder.iv);
         //
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, BlogActivity.class);
+                Intent intent = new Intent(activity, BlogDetailActivity.class);
                 intent.putExtra("data", blog);
                 ////
-                Pair[] pairs = new Pair[2];
-                pairs[0] = new Pair(holder.ivBlogImage, "ivBlogImage");
-                pairs[1] = new Pair(holder.tvBlogTitle, "tvBlogTitle");
-                pairs[1] = new Pair(holder.tvBlogSubtitle, "tvBlogSubtitle");
+                Pair[] pairs = new Pair[3];
+                pairs[0] = new Pair(holder.iv, "trImage");
+                pairs[1] = new Pair(holder.tvTitle, "trTitle");
+                pairs[2] = new Pair(holder.tvSubtitle, "trSubtitle");
                 //
                 ActivityOptions ao = ActivityOptions.makeSceneTransitionAnimation(activity, pairs);
                 ////
@@ -84,14 +84,14 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder>{
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
-        public ImageView ivBlogImage;
-        public TextView tvBlogTitle, tvBlogSubtitle;
+        public ImageView iv;
+        public TextView tvTitle, tvSubtitle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivBlogImage = itemView.findViewById(R.id.ivBlogImage);
-            tvBlogTitle = itemView.findViewById(R.id.tvBlogTitle);
-            tvBlogSubtitle = itemView.findViewById(R.id.tvBlogSubtitle);
+            iv = itemView.findViewById(R.id.iv);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvSubtitle = itemView.findViewById(R.id.tvSubtitle);
         }
     }
 }

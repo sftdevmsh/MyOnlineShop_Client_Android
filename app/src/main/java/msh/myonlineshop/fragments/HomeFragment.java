@@ -1,7 +1,6 @@
 package msh.myonlineshop.fragments;
 
 import android.app.Activity;
-import android.icu.lang.UCharacter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,7 +23,7 @@ import java.util.List;
 import msh.myonlineshop.R;
 import msh.myonlineshop.adapters.ProductAdapter;
 import msh.myonlineshop.adapters.ProductCategoryAdapter;
-import msh.myonlineshop.clients.base.ApiAddresses;
+import msh.myonlineshop.clientHandler.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.ProductCategory;
 import msh.myonlineshop.models.SliderItem;

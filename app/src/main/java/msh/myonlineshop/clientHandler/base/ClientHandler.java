@@ -1,4 +1,4 @@
-package msh.myonlineshop.clients.base;
+package msh.myonlineshop.clientHandler.base;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

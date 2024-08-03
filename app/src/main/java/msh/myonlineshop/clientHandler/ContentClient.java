@@ -1,4 +1,4 @@
-package msh.myonlineshop.clients;
+package msh.myonlineshop.clientHandler;
 
 import msh.myonlineshop.models.Content;
 import msh.myonlineshop.models.base.ServiceResponse;

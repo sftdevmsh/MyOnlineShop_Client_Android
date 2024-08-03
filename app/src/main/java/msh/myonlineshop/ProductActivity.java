@@ -2,13 +2,11 @@ package msh.myonlineshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import msh.myonlineshop.adapters.ProductAdapter;
-import msh.myonlineshop.clients.base.ApiAddresses;
+import msh.myonlineshop.clientHandler.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.ProductCategory;
 import msh.myonlineshop.models.base.ServiceResponse;

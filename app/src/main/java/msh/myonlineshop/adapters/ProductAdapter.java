@@ -22,7 +22,7 @@ import java.util.List;
 
 import msh.myonlineshop.ProductDetailsActivity;
 import msh.myonlineshop.R;
-import msh.myonlineshop.clients.base.ApiAddresses;
+import msh.myonlineshop.clientHandler.base.ApiAddresses;
 import msh.myonlineshop.models.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{

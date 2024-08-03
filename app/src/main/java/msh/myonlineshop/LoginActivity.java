@@ -11,8 +11,8 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import msh.myonlineshop.handlers.UserDbHandler;
-import msh.myonlineshop.handlers.CurrentUserHandler;
+import msh.myonlineshop.localDbHandler.UserDbHandler;
+import msh.myonlineshop.localDbHandler.CurrentUserHandler;
 import msh.myonlineshop.models.User;
 import msh.myonlineshop.models.base.ServiceResponse;
 import msh.myonlineshop.services.UserService;

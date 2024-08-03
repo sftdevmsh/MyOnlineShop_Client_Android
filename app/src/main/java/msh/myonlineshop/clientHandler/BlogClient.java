@@ -1,4 +1,4 @@
-package msh.myonlineshop.clients;
+package msh.myonlineshop.clientHandler;
 
 import msh.myonlineshop.models.Blog;
 import msh.myonlineshop.models.base.ServiceResponse;
@@ -16,7 +16,7 @@ public interface BlogClient {
     );
 
     @PUT("blog/increaseVisit/{id}")
-    Call<ServiceResponse<Blog>> increaseVisitCount(
+    Call<ServiceResponse<Long>> increaseVisitCount(
             @Path("id") long id
     );
 }

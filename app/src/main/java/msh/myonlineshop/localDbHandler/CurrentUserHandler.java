@@ -1,4 +1,4 @@
-package msh.myonlineshop.handlers;
+package msh.myonlineshop.localDbHandler;
 
 import android.content.Context;
 

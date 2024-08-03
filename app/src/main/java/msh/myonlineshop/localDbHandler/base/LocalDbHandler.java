@@ -1,4 +1,4 @@
-package msh.myonlineshop.handlers.base;
+package msh.myonlineshop.localDbHandler.base;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,6 +18,8 @@ public abstract class LocalDbHandler<T> extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(getCreateTableQuery());
+        //**etx
+        db.close();
     }
 
     @Override
