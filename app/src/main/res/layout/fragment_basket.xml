@@ -5,10 +5,151 @@
     android:layout_height="match_parent"
     tools:context=".fragments.BasketFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/nsvBasketItems"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="7dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/rvBasketItems"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:nestedScrollingEnabled="false">-->
+<!--            </androidx.recyclerview.widget.RecyclerView>-->
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/pbBasketItems"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_margin="10dp">-->
+<!--            </ProgressBar>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+
+
+    <LinearLayout
+        android:id="@+id/lytEmptyBasket"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_item"
+            android:gravity="center"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:text="@string/empty_basket"
+                android:textColor="@color/primaryDark"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/img_empty_basket" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lytSummaryBasket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBasket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            ></androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_item"
+            android:padding="5dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:text="@string/total_count"
+                    android:textColor="@color/primaryDark"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tvTotalCountBasket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:text="@string/total_price"
+                    android:textColor="@color/primaryDark"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tvTotalPriceBasket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnPaymentBasket"
+                android:layout_width="300dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:text="@string/place_order"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </FrameLayout>

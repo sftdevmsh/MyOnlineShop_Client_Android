@@ -15,11 +15,11 @@ public abstract class LocalDbHandler<T> extends SQLiteOpenHelper {
         super(context, DatabaseName, null, DatabaseVersion);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(getCreateTableQuery());
-        //**etx
-        db.close();
+//        db.close();  => will result in err (attempt to re-open an already-closed object: SQLiteDatabase: )
     }
 
     @Override

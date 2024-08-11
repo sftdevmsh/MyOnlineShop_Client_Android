@@ -2,7 +2,7 @@ package msh.myonlineshop.models;
 
 import android.database.Cursor;
 
-public class CardItem {
+public class BasketItem {
     private long id;
     private Product product;
     private Color color;
@@ -22,10 +22,10 @@ public class CardItem {
     public static String key_size_title = "size_title";
 
 
-    public CardItem() {
+    public BasketItem() {
     }
 
-    public CardItem(Cursor cursor) {
+    public BasketItem(Cursor cursor) {
         this.setId(Integer.parseInt(cursor.getString(0)));
         this.setQuantity(Integer.parseInt(cursor.getString(4)));
         //

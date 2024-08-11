@@ -21,8 +21,8 @@ import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
 import msh.myonlineshop.clientHandler.base.ApiAddresses;
-import msh.myonlineshop.localDbHandler.CardDbHandler;
-import msh.myonlineshop.models.CardItem;
+import msh.myonlineshop.localDbHandler.BasketItemDbHandler;
+import msh.myonlineshop.models.BasketItem;
 import msh.myonlineshop.models.Color;
 import msh.myonlineshop.models.Product;
 import msh.myonlineshop.models.Size;
@@ -74,13 +74,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 //
                 else {
                     try {
-                        CardItem cardItem = new CardItem();
+                        BasketItem cardItem = new BasketItem();
                         cardItem.setProduct(product);
                         cardItem.setColor(selectedColor);
                         cardItem.setSize(selectedSize);
                         cardItem.setQuantity(1);
                         //
-                        CardDbHandler cardDbHandler = new CardDbHandler(ProductDetailsActivity.this);
+                        BasketItemDbHandler cardDbHandler = new BasketItemDbHandler(ProductDetailsActivity.this);
                         cardDbHandler.addToBasket(cardItem);
                         MsgUtility.showMsgShort(btnAddToCard,"Successfully added");
                     }

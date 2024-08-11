@@ -30,7 +30,7 @@ import msh.myonlineshop.fragments.BlogFragment;
 import msh.myonlineshop.fragments.HomeFragment;
 import msh.myonlineshop.fragments.LoginFragment;
 import msh.myonlineshop.fragments.ProductsFragment;
-import msh.myonlineshop.localDbHandler.CardDbHandler;
+import msh.myonlineshop.localDbHandler.BasketItemDbHandler;
 import msh.myonlineshop.localDbHandler.CurrentUserHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void syncBadges() {
-        CardDbHandler cardDBHandler = new CardDbHandler(this);
+        BasketItemDbHandler cardDBHandler = new BasketItemDbHandler(this);
         int basketCount = cardDBHandler.getAllBasketDataCount();
         BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.basket);
         if (basketCount > 0) {

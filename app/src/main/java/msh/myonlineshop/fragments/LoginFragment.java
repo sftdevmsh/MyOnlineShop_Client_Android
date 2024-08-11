@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import msh.myonlineshop.MainActivity;
 import msh.myonlineshop.R;
+import msh.myonlineshop.localDbHandler.BasketItemDbHandler;
 import msh.myonlineshop.localDbHandler.CurrentUserHandler;
 import msh.myonlineshop.localDbHandler.UserDbHandler;
 import msh.myonlineshop.models.User;
@@ -143,10 +144,21 @@ public class LoginFragment extends Fragment {
                         //
                         //MainActivity mainActivity = (MainActivity) getActivity();
                         mainActivity.syncMenu();
+                        ////
+                        BasketItemDbHandler basketItemDbHandler = new BasketItemDbHandler(mainActivity);
+                        int count = basketItemDbHandler.getAllBasketDataCount();
                         //
                         FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.mainFrameLayout, new HomeFragment(mainActivity));
+                        if(count > 0) {
+                            //go to basket
+                            transaction.replace(R.id.mainFrameLayout, new BasketFragment(mainActivity));
+                        }
+                        else {
+                            //go to home page
+                            transaction.replace(R.id.mainFrameLayout, new HomeFragment(mainActivity));
+                        }
                         transaction.commit();
+                        ////
                     }
                 //
                 showBtnLogin(true);

@@ -43,4 +43,18 @@
     <string name="expensive_filter">expensive filter</string>
     <string name="cheap_filter">cheap filter</string>
     <string name="filtered_products">filtered products</string>
+    <string name="empty_basket">empty basket</string>
+    <string name="total_count">total count</string>
+    <string name="total_price">total price</string>
+    <string name="place_order">place order</string>
+    <string name="pay">pay</string>
+    <string name="login_and_pay">login and pay</string>
+    <string name="payment_description">payment description</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="email">email</string>
+    <string name="mobile">mobile</string>
+    <string name="tel">tel</string>
+    <string name="address">address</string>
+    <string name="postal">postal</string>
 </resources>
